@@ -1,0 +1,18 @@
+2025-11-04T21:15:04+01:00 DB error: Class "PHPMailer" not found
+2025-11-04T21:15:23+01:00 DB error: Class "PHPMailer" not found
+2025-11-04T21:44:25+01:00 DB error: Class "PHPMailer\PHPMailer\PHPMailer" not found
+2025-11-05T12:51:27+01:00 DB error: SQLSTATE[42S02]: Base table or view not found: 1932 Table 'miramoo.showtimes' doesn't exist in engine
+2025-11-05T12:51:55+01:00 DB error: SQLSTATE[42S02]: Base table or view not found: 1932 Table 'miramoo.showtimes' doesn't exist in engine
+2025-11-05T13:09:10+01:00 DB error: Showtime not found for Moana on 2025-12-01 at 14:00:00 in 1
+2025-11-05T14:54:20+01:00 DB error: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'd12f600a359cc90d44a656e9a4f01eae' for column `miramoo`.`bookings`.`booking_id` at row 1
+2025-11-05T14:57:23+01:00 DB error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+2025-11-05T14:57:46+01:00 DB error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'seats)
+                            VALUES ('8', '[\"A15\"]')' at line 1
+2025-11-05T14:58:40+01:00 DB error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'seats)
+                            VALUES ('9', '[\"A15\"]')' at line 1
+2025-11-05T15:02:12+01:00 DB error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'seats)
+                            VALUES ('10', 'A15')' at line 1
+2025-11-05T15:03:25+01:00 DB error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+                            VALUES ('11', 'A15')' at line 1
+2025-11-05T15:05:40+01:00 DB error: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'A15' for column `miramoo`.`booking_seats`.`seat_id` at row 1
+2025-11-05T15:06:28+01:00 DB error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'is_book' in 'field list'

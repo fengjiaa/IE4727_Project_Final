@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MiraMoo — Membership</title>
+<link rel="icon" href="assets/img/logo.png"><link rel="stylesheet" href="stylesheet.css">
+</head><body><header class="site_hdr"><div class="container nav">
+  <nav class="site_links left" aria-label="Left navigation">
+    <div class="site_brand">MiraMoo</div>
+    <a href="index.html">Home</a>
+    <a href="movies-schedule.html">Now Showing</a>
+    <a href="booking.html">Book Tickets</a>
+  </nav>
+  <a href="index.html" class="site_centerlogo" aria-label="MiraMoo Home"><img src="assets/img/logo.png" alt=""></a>
+  <nav class="site_links right" aria-label="Right navigation">
+    <a href="membership.html">Membership</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+  <button id="nav_toggle" class="nav_toggle" aria-label="Menu"><i></i></button>
+</div></header><script src="nav.js"></script><main class="container section">
+<h1>Membership</h1><p>Join MiraMoo Club for discounts and perks.</p>
+<form class="card grid" id="m_form" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+  <label>Full Name <input name="name" required></label>
+  <label>Email <input type="email" name="email" required></label>
+  <label>Phone <input name="phone" required></label>
+  <label>Birthday <input type="date" name="birthday" required></label>
+  <label>Password <input type="password" name="pw" required></label>
+  <label>Confirm Password <input type="password" name="pw2" required></label>
+  <div style="grid-column:1/-1"><button class="btn">Join Now</button></div>
+</form>
+<script>
+const mf=document.getElementById('m_form');
+mf.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const fd=new FormData(mf);
+  if(fd.get('pw')!==fd.get('pw2')){ alert('Passwords do not match'); return; }
+  const res = await fetch('api/form_submissions.php', {method:'POST', body:new URLSearchParams({ type:'membership', name:fd.get('name'), email:fd.get('email'), phone:fd.get('phone'), birthday:fd.get('birthday') })});
+  const j=await res.json(); alert(j.ok?'Thanks for joining!':'Failed'); mf.reset();
+});
+</script>
+</main><footer class="site_ftr">
+  <div class="container cols">
+    <!-- Brand / Tagline -->
+    <div class="footer_brand">
+      <img src="assets/img/logo.png" alt="MiraMoo Logo" class="footer_logo">
+      <div class="brand">MiraMoo</div>
+      <p class="tagline">“Look. Laugh. Love — again.”</p>
+      <p>A pastel-hued world where animated stories bring people together.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer_links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies-schedule.html">Now Showing</a></li>
+        <li><a href="booking.html">Book Tickets</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="account.php">Admin Login</a></li>
+      </ul>
+    </div>
+
+    <!-- Visit Us -->
+    <div>
+      <h4>Visit Us</h4>
+      <address>
+        📍 MiraMoo Theatre<br>
+        123 Dream Street, Pastel Park<br>
+        Singapore, 222222<br><br>
+        📞 (000) 123-4567<br>
+        📧 <a href="mailto:hello@miramoo.com">hello@miramoo.com</a><br><br>
+        🕒 <strong>Hours:</strong><br>
+        Mon–Fri: 12 PM – 9 PM<br>
+        Sat–Sun: 10 AM – 10 PM
+      </address>
+    </div>
+
+    <!-- Social / Community -->
+    <div>
+      <h4>Connect With Us</h4>
+      <ul class="social_links">
+        <li>Instagram — <a href="https://instagram.com/miramoo.cinema" target="_blank">@miramoo.cinema</a></li>
+        <li>Facebook — <a href="https://facebook.com/miramoo" target="_blank">/miramoo</a></li>
+        <li>TikTok — <a href="https://tiktok.com/@miramoo.magic" target="_blank">@miramoo.magic</a></li>
+      </ul>
+      <p class="community_note">
+        Join the MiraMoo community — where families, friends, and dreamers gather to relive the magic of animation together.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer_bottom">
+    <p>© 2025 MiraMoo Cinemas — All rights reserved. | 
+      <a href="/privacy-policy">Privacy Policy</a> | 
+      <a href="/terms">Terms of Use</a>
+    </p>
+  </div>
+</footer></body></html>

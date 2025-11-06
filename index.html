@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MiraMoo — Home</title>
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="stylesheet.css">
+
+<style>
+/* Hero Video */
+.hero-video {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 0;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+.hero-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Volume Icon */
+.volume-icon {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  z-index: 3;
+}
+.volume-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Hover control */
+.hero-video:hover .volume-icon {
+  opacity: 1;
+}
+.volume-icon.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hero Text Below Video */
+.hero-text {
+  text-align: center;
+  margin: 40px auto 60px;
+}
+.hero-text h1 {
+  font-size: 3em;
+  font-family: 'Baloo 2', cursive;
+  margin-bottom: 10px;
+}
+.hero-text p {
+  font-size: 1.2em;
+  color: #444;
+  margin-bottom: 20px;
+}
+.hero-text .cta-buttons a {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 20px;
+  background: #fcd34d;
+  color: #2b2440;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.hero-text .cta-buttons a:hover {
+  background: #ffea85;
+}
+
+/* Movie Grid */
+.grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.card img.poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Sections with Unique Backgrounds */
+.fixed-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 60px 20px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.fixed-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+  border-radius: 12px;
+}
+.fixed-section > * {
+  position: relative;
+  z-index: 1;
+}
+.fixed-section h2 { color: #fff; }
+
+.about-section { background: url('assets/img/toystory.jpg') center/cover no-repeat; }
+.membership-section { background: url('assets/img/panda.jpg') center/cover no-repeat; }
+.testimonial-section { background: url('assets/img/DESPICABLE.jpg') center/cover no-repeat; }
+
+.fixed-section a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: rgba(252, 211, 77, 0.9);
+  color: #2b2440;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.fixed-section a:hover { background: rgba(255, 234, 133, 0.9); }
+
+/* Footer Social Icons Only */
+.social_links {
+  list-style: none;
+  padding-left: 0;
+}
+.social_links li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.social_links svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  color: #2b2440;
+  transition: all 0.3s;
+}
+.social_links a:hover svg {
+  color: #8a68c4;
+}
+</style>
+</head>
+
+<body>
+<header class="site_hdr">
+  <div class="container nav">
+    <nav class="site_links left" aria-label="Left navigation">
+      <div class="site_brand">MiraMoo</div>
+      <a href="index.html" class="active">Home</a>
+      <a href="movies-schedule.html">Now Showing</a>
+      <a href="booking.html">Book Tickets</a>
+    </nav>
+
+    <a href="index.html" class="site_centerlogo" aria-label="MiraMoo Home">
+      <img src="assets/img/logo.png" alt="MiraMoo Logo">
+    </a>
+
+    <nav class="site_links right" aria-label="Right navigation">
+      <a href="membership.html">Membership</a>
+      <a href="about.html">Our Story</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+    <button id="nav_toggle" class="nav_toggle" aria-label="Menu"><i></i></button>
+  </div>
+</header>
+<script src="nav.js"></script>
+
+<main class="container section">
+
+  <!-- Hero Video -->
+  <section class="hero-video" id="heroVideoSection">
+    <video autoplay muted playsinline preload="auto" id="miramooVideo">
+      <source src="assets/img/Disney.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="volume-icon" id="volumeIcon" title="Toggle sound">
+      <svg id="muteIcon" viewBox="0 0 24 24">
+        <path d="M5 9v6h4l5 5V4l-5 5H5z"/>
+        <line x1="18" y1="9" x2="22" y2="13" stroke="white" stroke-width="2"/>
+        <line x1="22" y1="9" x2="18" y2="13" stroke="white" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Hero Text -->
+  <section class="hero-text">
+    <h1>Step Into a World of Animated Wonder at MiraMoo</h1>
+    <p>MiraMoo brings your favorite animated movies back to the big screen — perfect for kids, couples, and families alike.</p>
+    <div class="cta-buttons">
+      <a href="movies-schedule.html">See Now Showing</a>
+      <a href="membership.html">Join the MiraMoo Club</a>
+    </div>
+  </section>
+
+  <!-- Featured Movies -->
+  <section class="grid">
+    <article class="card" id="featured-moana2">
+      <img src="assets/img/moana2.webp" class="poster" alt="Moana 2">
+      <h3>Moana 2</h3>
+      <a class="btn" href="movies-schedule.html#moana2">See More</a>
+    </article>
+
+    <article class="card" id="featured-insideout2">
+      <img src="assets/img/insideout2.webp" class="poster" alt="Inside Out 2">
+      <h3>Inside Out 2</h3>
+      <a class="btn" href="movies-schedule.html#insideout2">See More</a>
+    </article>
+
+    <article class="card" id="featured-tangled">
+      <img src="https://image.tmdb.org/t/p/original/ym7Kst6a4uodryxqbGOxmewF235.jpg" class="poster" alt="Tangled">
+      <h3>Tangled</h3>
+      <a class="btn" href="movies-schedule.html#tangled">See More</a>
+    </article>
+  </section>
+
+  <!-- About MiraMoo Section -->
+  <section class="fixed-section about-section">
+    <h2>More Than Movies — Memories</h2>
+    <p>At MiraMoo, we believe animated movies bring people together. From childhood favorites to brand-new adventures, we create magical experiences for everyone.</p>
+    <a href="about.html">Learn More About Us →</a>
+  </section>
+
+  <!-- Membership Section -->
+  <section class="fixed-section membership-section">
+    <h2>Join the MiraMoo Club</h2>
+    <p>Unlock discounts, early screenings, and surprises for the whole family. Be part of our animation-loving community!</p>
+    <a href="membership.html">Become a Member Now</a>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="fixed-section testimonial-section">
+    <h2>What Families Are Saying</h2>
+    <p>“Watching Inside Out 2 at MiraMoo brought back so many memories!” – Jessica K.</p>
+    <p>“Moana 2 on the big screen was magical! My whole family loved it.” – Feng J.</p>
+  </section>
+
+</main>
+
+<footer class="site_ftr">
+  <div class="container cols">
+    <!-- Brand / Tagline -->
+    <div class="footer_brand">
+      <img src="assets/img/logo.png" alt="MiraMoo Logo" class="footer_logo">
+      <div class="brand">MiraMoo</div>
+      <p class="tagline">“Look. Laugh. Love — again.”</p>
+      <p>A pastel-hued world where animated stories bring people together.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer_links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies-schedule.html">Now Showing</a></li>
+        <li><a href="booking.html">Book Tickets</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="account.php">Admin Login</a></li>
+      </ul>
+    </div>
+
+    <!-- Visit Us -->
+    <div>
+      <h4>Visit Us</h4>
+      <address>
+        📍 MiraMoo Theatre<br>
+        123 Dream Street, Pastel Park<br>
+        Singapore, 222222<br><br>
+        📞 (000) 123-4567<br>
+        📧 <a href="mailto:hello@miramoo.com">hello@miramoo.com</a><br><br>
+        🕒 <strong>Hours:</strong><br>
+        Mon–Fri: 12 PM – 9 PM<br>
+        Sat–Sun: 10 AM – 10 PM
+      </address>
+    </div>
+
+    <!-- Social / Community -->
+    <div>
+      <h4>Connect With Us</h4>
+      <ul class="social_links">
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.1a1.4 1.4 0 110-2.8 1.4 1.4 0 010 2.8z"/></svg>
+          <a href="https://instagram.com/miramoo.cinema" target="_blank">@miramoo.cinema</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0022 12"/></svg>
+          <a href="https://facebook.com/miramoo" target="_blank">@miramoo</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2c1.1 4.1 4.1 6.2 7 6.6v3.2c-2.4-.2-4.4-1.2-5.6-2.5v7.7c0 2.9-2.3 5.3-5.2 5.3s-5.2-2.4-5.2-5.3S6.3 12 9.2 12c.3 0 .5 0 .8.1V9.2c-4.7-.1-8.5 3.7-8.5 8.3S4.3 24 9 24s9-4 9-8.8V9.8c1 .6 2.2.9 3.5 1V7.6c-1.7-.2-3.3-1-4.3-2.2C16.9 4.2 16.2 3.1 16 2h-4z"/></svg>
+          <a href="https://tiktok.com/@miramoo.magic" target="_blank">@miramoo.magic</a>
+        </li>
+      </ul>
+      <p class="community_note">
+        Join the MiraMoo community — where families, friends, and dreamers gather to relive the magic of animation together.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer_bottom">
+    <p>© 2025 MiraMoo Cinemas — All rights reserved. | 
+      <a href="/privacy-policy">Privacy Policy</a> | 
+      <a href="/terms">Terms of Use</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Video Scroll + Mute/Unmute Control
+const video = document.getElementById('miramooVideo');
+const volumeIcon = document.getElementById('volumeIcon');
+let isMuted = true;
+
+// Ensure autoplay muted
+video.muted = true;
+video.play().catch(()=>{});
+
+// Toggle mute/unmute
+volumeIcon.addEventListener('click', (e) => {
+  e.stopPropagation();
+  isMuted = !isMuted;
+  video.muted = isMuted;
+  volumeIcon.innerHTML = isMuted
+    ? `<svg viewBox='0 0 24 24'><path d='M5 9v6h4l5 5V4l-5 5H5z'/><line x1='18' y1='9' x2='22' y2='13' stroke='white' stroke-width='2'/><line x1='22' y1='9' x2='18' y2='13' stroke='white' stroke-width='2'/></svg>`
+    : `<svg viewBox='0 0 24 24'><path d='M5 9v6h4l5 5V4l-5 5H5z'/><path d='M16 7c1.5 1.5 1.5 8.5 0 10' stroke='white' stroke-width='2' fill='none'/></svg>`;
+  volumeIcon.style.opacity = isMuted ? 1 : 0; // hide when unmuted unless hovered
+});
+
+// Show icon on hover when unmuted
+video.addEventListener('mouseenter', () => {
+  if (!isMuted) volumeIcon.style.opacity = 1;
+});
+video.addEventListener('mouseleave', () => {
+  if (!isMuted) volumeIcon.style.opacity = 0;
+});
+
+// Pause video when scrolled past; replay when scrolled back
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      video.currentTime = 0;
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+}, { threshold: 0.4 });
+observer.observe(video);
+</script>
+</body>
+</html>

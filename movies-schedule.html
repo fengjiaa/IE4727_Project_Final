@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiraMoo — Now Showing</title>
+    <link rel="icon" href="assets/img/logo.png">
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+        /* Extra styling for horizontal alignment and button sizes */
+        /* Movie Layout */
+        .card {
+        display: grid;
+        grid-template-columns: 250px 1fr 280px; /* poster | info | showtime */
+        gap: 20px;
+        align-items: flex-start;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(43, 36, 64, 0.08);
+        padding: 20px;
+        width: 100%;
+        }
+
+        /* Poster */
+        .poster-col img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+        }
+
+        /* Movie Info */
+        .movie-info h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        color: #2b2440;
+        }
+
+        .movie-info p {
+        margin: 6px 0;
+        color: #333;
+        line-height: 1.5;
+        }
+
+        /* Showtime Column */
+        .showtime-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        }
+
+        .showtime-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        }
+
+        .showtime-form label {
+        font-weight: 500;
+        color: #2b2440;
+        }
+
+        .showtime-form select,
+        .showtime-form input[type="number"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: 'Poppins', sans-serif;
+        }
+
+        .showtime-form select:focus,
+        .showtime-form input[type="number"]:focus {
+        border-color: var(--brand, #8a68c4);
+        outline: none;
+        box-shadow: 0 0 4px rgba(138, 104, 196, 0.25);
+        }
+
+        /* Buttons */
+        .btn {
+        background: #8a68c4;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 16px;
+        font-family: 'Poppins', sans-serif;
+        cursor: pointer;
+        transition: 0.25s ease;
+        }
+
+        .btn:hover {
+        background: #a07fd3;
+        transform: translateY(-1px);
+        }
+
+        /* 🎬 Add to Preferences button */
+        .btn-add-to-pref {
+        background: #2b2440;
+        }
+
+        .btn-add-to-pref:hover {
+        background: #3e3363;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+        .card {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .poster-col img {
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        .showtime-form {
+            align-items: center;
+        }
+        }
+
+
+
+    </style>
+</head>
+<body>
+<header class="site_hdr">
+    <div class="container nav">
+        <nav class="site_links left" aria-label="Left navigation">
+            <div class="site_brand">MiraMoo</div>
+            <a href="index.html">Home</a>
+            <a href="movies-schedule.html">Now Showing</a>
+            <a href="booking.html">Book Tickets</a>
+        </nav>
+        <a href="index.html" class="site_centerlogo" aria-label="MiraMoo Home"><img src="assets/img/logo.png" alt=""></a>
+        <nav class="site_links right" aria-label="Right navigation">
+            <a href="membership.html">Membership</a>
+            <a href="about.html">Our Story</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <button id="nav_toggle" class="nav_toggle" aria-label="Menu"><i></i></button>
+    </div>
+</header>
+<script src="nav.js"></script>
+
+<main class="container section">
+    <h1>Now Showing</h1>
+    <p>Welcome to MiraMoo’s Now Showing! Rediscover the animated classics or explore brand-new adventures perfect for everyone — kids, couples, and families alike. Choose your showtime, add your favourites, and continue to <strong>Booking</strong> for some movie magic.</p>
+    <br>
+
+    <!-- Search & Filter Bar -->
+    <div id="filter-bar" class="filter-bar">
+        <input type="text" id="search-input" placeholder="Search movies..." />
+        
+        <select id="genre-filter">
+            <option value="">All Genres</option>
+        </select>
+
+        <select id="date-filter">
+            <option value="">All Dates</option>
+        </select>
+
+        <button id="clear-filters" class="btn btn-clear">Clear Filters</button>
+    </div>
+
+    <!-- Movies will be dynamically injected here -->
+    <section id="movies-container" class="grid"></section>
+
+    <script src="api/movies.js"></script>
+</main>
+
+<style>
+    /* Styled "Clear Filters" button to match MiraMoo theme */
+    .btn-clear {
+        background: var(--accent2);
+        color: var(--brand);
+        border: 1px solid var(--brand);
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    .btn-clear:hover {
+        background: var(--brand);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(43, 36, 64, 0.25);
+        transform: translateY(-1px);
+    }
+
+    .btn-clear:active {
+        transform: translateY(0);
+        box-shadow: 0 1px 4px rgba(43, 36, 64, 0.2);
+    }
+
+    /* Filter bar styling */
+    .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .filter-bar .btn-clear {
+        padding: 10px 15px;
+        background-color: #eee;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .filter-bar .btn-clear:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<footer class="site_ftr">
+    <div class="container cols">
+        <div class="footer_brand">
+            <img src="assets/img/logo.png" alt="MiraMoo Logo" class="footer_logo">
+            <div class="brand">MiraMoo</div>
+            <p class="tagline">“Look. Laugh. Love — again.”</p>
+            <p>A pastel-hued world where animated stories bring people together.</p>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul class="footer_links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies-schedule.html">Now Showing</a></li>
+                <li><a href="booking.html">Book Tickets</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="account.php">Admin Login</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Visit Us</h4>
+            <address>
+                📍 MiraMoo Theatre<br>
+                123 Dream Street, Pastel Park<br>
+                Singapore, 222222<br><br>
+                📞 (000) 123-4567<br>
+                📧 <a href="mailto:hello@miramoo.com">hello@miramoo.com</a><br><br>
+                🕒 <strong>Hours:</strong><br>
+                Mon–Fri: 12 PM – 9 PM<br>
+                Sat–Sun: 10 AM – 10 PM
+            </address>
+        </div>
+        <div>
+            <h4>Connect With Us</h4>
+            <ul class="social_links">
+                <li>Instagram — <a href="https://instagram.com/miramoo.cinema" target="_blank">@miramoo.cinema</a></li>
+                <li>Facebook — <a href="https://facebook.com/miramoo" target="_blank">/miramoo</a></li>
+                <li>TikTok — <a href="https://tiktok.com/@miramoo.magic" target="_blank">@miramoo.magic</a></li>
+            </ul>
+            <p class="community_note">
+                Join the MiraMoo community — where families, friends, and dreamers gather to relive the magic of animation together.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer_bottom">
+        <p>© 2025 MiraMoo Cinemas — All rights reserved. |
+            <a href="/privacy-policy">Privacy Policy</a> |
+            <a href="/terms">Terms of Use</a>
+        </p>
+    </div>
+</footer>
+</body>
+</html>
